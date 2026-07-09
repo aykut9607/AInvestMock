@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/services/" />
+  <Folder Name="/services/finance-profile-service/" />
+  <Folder Name="/services/finance-profile-service/src/">
+    <Project Path="services/finance-profile-service/src/FinanceProfile.Api/FinanceProfile.Api.csproj" />
+  </Folder>
+</Solution>
