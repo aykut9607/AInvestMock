@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("60e3ab51-950b-460b-b5a9-e556494bdb0e")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinanceProfile.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a55b4ae0707793ccd850ae5a65e8bdf32142f7a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ae602897b0cf318b927d21fcacf3ecbc605ef39")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinanceProfile.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinanceProfile.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
