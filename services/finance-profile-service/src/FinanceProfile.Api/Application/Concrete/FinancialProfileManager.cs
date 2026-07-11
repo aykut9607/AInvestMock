@@ -12,7 +12,7 @@ namespace FinanceProfile.Api.Application.Concrete;
 
 public class FinancialProfileManager : IFinancialProfileService
 {
-    protected readonly IFinancialProfileDal _financialProfileDal;
+    private readonly IFinancialProfileDal _financialProfileDal;
     public FinancialProfileManager(IFinancialProfileDal financialProfileDal)
     {
         _financialProfileDal = financialProfileDal;

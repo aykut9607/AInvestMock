@@ -1,16 +1,16 @@
-using FinanceProfile.Api.Infrastructure.EntityFramework;
+using FinancialIQ.Api.Infrastructure.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinanceProfile.Api.Controllers;
+namespace FinancialIQ.Api.Controllers;
 
 [ApiController]
 [Route("health")]
 public class HealthController : ControllerBase
 {
-    private readonly FinanceDbContext _context;
+    private readonly FinancialIqDbContext  _context;
 
-    public HealthController(FinanceDbContext context)
+    public HealthController(FinancialIqDbContext  context)
     {
         _context = context;
     }
@@ -20,17 +20,18 @@ public class HealthController : ControllerBase
     {
         return Ok(new
         {
-            service = "FinanceProfile.Api",
+            service = "FinancialIQ.Api",
             status = "Healthy",
             timestamp = DateTime.UtcNow
         });
     }
 
+    // TEMPORARY - just to visually verify the PostgreSQL connection, will be deleted tomorrow
     [HttpGet("db-check")]
     public async Task<IActionResult> DbCheck()
     {
-        var count = await _context.FinancialProfiles.CountAsync();
-        var users = await _context.FinancialProfiles
+        var count = await _context.FinancialIqResults.CountAsync();
+        var users = await _context.FinancialIqResults
             .Select(p => p.UserId)
             .ToListAsync();
 
