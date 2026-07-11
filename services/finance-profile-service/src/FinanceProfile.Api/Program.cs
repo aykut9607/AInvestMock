@@ -1,3 +1,6 @@
+using FinanceProfile.Api.Application.Abstract;
+using FinanceProfile.Api.Application.Concrete;
+using FinanceProfile.Api.Infrastructure.Abstract;
 using FinanceProfile.Api.Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +10,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<FinanceDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("FinanceDb")));
+
+builder.Services.AddScoped<IFinancialProfileDal, EfFinancialProfileDal>();
+builder.Services.AddScoped<IFinancialProfileService, FinancialProfileManager>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
