@@ -1,4 +1,5 @@
 using FinancialIQ.Api.Application.Abstract;
+using FinancialIQ.Api.Domain.Dtos;
 using FinancialIQ.Api.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,5 +28,31 @@ public class FinancialIqResultsController : ControllerBase
     {
         var result = await _financialIqService.AddAsync(financialIqResult);
         return result.Success ? Ok(result) : BadRequest(result);
+    }
+
+
+
+    [HttpPost("calculate")]
+    public async Task<IActionResult> Calculate([FromBody] CalculateRequest request)
+    {
+        var months = request.MonthlyExpenses > 0
+            ? request.CashReserve / request.MonthlyExpenses
+            : 0;
+
+        var segment = months >= 3 ? "STRONG" : "NEEDS_IMPROVEMENT";
+        var score = months >= 3 ? 80 : 40;
+
+        var result = new FinancialIqResult
+        {
+            Id = Guid.NewGuid(),
+            UserId = request.UserId,
+            Score = score,
+            Segment = segment,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        var addResult = await _financialIqService.AddAsync(result);
+
+        return addResult.Success ? Ok(result) : BadRequest(addResult);
     }
 }
