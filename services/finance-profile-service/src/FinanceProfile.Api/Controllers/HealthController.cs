@@ -9,10 +9,12 @@ namespace FinanceProfile.Api.Controllers;
 public class HealthController : ControllerBase
 {
     private readonly FinanceDbContext _context;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public HealthController(FinanceDbContext context)
+    public HealthController(FinanceDbContext context, IHttpClientFactory httpClientFactory)
     {
         _context = context;
+        _httpClientFactory = httpClientFactory; 
     }
 
     [HttpGet]
@@ -22,7 +24,7 @@ public class HealthController : ControllerBase
         {
             service = "FinanceProfile.Api",
             status = "Healthy",
-            timestamp = DateTime.UtcNow
+            timestamp = DateTime.UtcNow 
         });
     }
 
@@ -35,5 +37,18 @@ public class HealthController : ControllerBase
             .ToListAsync();
 
         return Ok(new { count, users });
+    }
+
+    [HttpGet("iq-check")]
+    public async Task<IActionResult> IqCheck()
+    {
+       var client = _httpClientFactory.CreateClient();
+       //creates a new instance of HttpClient using the IHttpClientFactory. 
+
+       var response = await client.GetAsync("http://localhost:5109/health");
+       //making a request to the Financial IQ service's health endpoint. It waits for the response asynchronously.Just like in JS.
+       
+       var content = await response.Content.ReadAsStringAsync();
+       return Ok(new { financeCalledIq = true, iqResponse = content });
     }
 }

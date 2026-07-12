@@ -26,7 +26,7 @@ public class HealthController : ControllerBase
         });
     }
 
-    // TEMPORARY - just to visually verify the PostgreSQL connection, will be deleted tomorrow
+
     [HttpGet("db-check")]
     public async Task<IActionResult> DbCheck()
     {

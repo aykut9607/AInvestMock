@@ -17,6 +17,8 @@ builder.Services.AddScoped<IFinancialProfileService, FinancialProfileManager>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient();   
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
