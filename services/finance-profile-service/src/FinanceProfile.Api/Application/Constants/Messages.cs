@@ -2,6 +2,19 @@ namespace FinanceProfile.Api.Application.Constants;
 
 public static class Messages
 {
-    public const string FinancialProfileAdded = "Finansal profil eklendi.";
-    public const string FinancialProfileListed = "Finansal profiller listelendi.";
+    
+    // CRUD - success
+    public const string FinancialProfileListed = "Financial profiles listed successfully.";
+    public const string FinancialProfileRetrieved = "Financial profile retrieved successfully.";
+    public const string FinancialProfileSaved = "Financial profile saved successfully.";    
+    public const string FinancialProfileDeleted = "Financial profile deleted successfully.";
+
+    // Not found
+    public const string FinancialProfileNotFound = "Financial profile not found.";
+
+    // Validation / business rules
+    public const string InvalidMonthlyIncome = "Monthly income must be greater than zero.";
+    public const string NegativeAmountNotAllowed = "Monetary fields cannot be negative.";
+    public const string InvalidRiskPreference = "Risk preference must be one of the allowed values.";
+    public const string InvalidUserId = "User id is required and must be valid.";
 }

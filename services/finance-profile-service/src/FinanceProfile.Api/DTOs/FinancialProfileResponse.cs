@@ -1,6 +1,7 @@
+using FinanceProfile.Api.Core.Entities;
 namespace FinanceProfile.Api.DTOs;
 
-public class FinancialProfileResponse
+public class FinancialProfileResponse: IDto
 {
     public Guid Id { get; set; }
 

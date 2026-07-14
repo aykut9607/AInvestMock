@@ -55,8 +55,8 @@ where TContext : DbContext
 
      public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> filter)
     {
-        return await _context.Set<TEntity>().SingleOrDefaultAsync(filter);
-       //getting user by ID. It expects exactly one record matching the filter; returns null if none exists
+        return await _context.Set<TEntity>().FirstOrDefaultAsync (filter);
+       ////gets the first record matching the filter; returns null if none exists (does not require uniqueness)
     }
 
     public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
